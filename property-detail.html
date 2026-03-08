@@ -1,0 +1,527 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Property Details — Magic Homes</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
+  
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --cream: #f5f2ec;
+      --bone:  #ede9e0;
+      --dark:  #1a1a18;
+      --mid:   #3b3b37;
+      --gold:  #b89a5e;
+      --gold-light: #d4b97a;
+      --muted: #8a8676;
+      --white: #ffffff;
+      --font-serif: 'Cormorant Garamond', Georgia, serif;
+      --font-sans:  'Montserrat', sans-serif;
+      --transition: 0.45s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+      --fast: 0.2s ease;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: var(--font-sans);
+      background: var(--cream);
+      color: var(--dark);
+      overflow-x: hidden;
+    }
+
+    /* Navigation */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0;
+      z-index: 100;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 28px 60px;
+      background: rgba(245, 242, 236, 0.88);
+      backdrop-filter: blur(18px);
+      border-bottom: 1px solid rgba(184,154,94,0.18);
+    }
+
+    .nav-logo {
+      font-family: var(--font-serif);
+      font-size: 1.55rem;
+      font-weight: 300;
+      letter-spacing: 0.12em;
+      color: var(--dark);
+      text-decoration: none;
+    }
+
+    .nav-logo span { color: var(--gold); }
+
+    .back-link {
+      font-size: 0.67rem;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      font-weight: 500;
+      text-decoration: none;
+      color: var(--mid);
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      transition: color var(--fast);
+    }
+
+    .back-link:hover { color: var(--gold); }
+
+    /* Hero Section */
+    .detail-hero {
+      margin-top: 120px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 60px;
+      align-items: center;
+      padding: 80px 60px;
+    }
+
+    .detail-gallery {
+      position: relative;
+    }
+
+    .detail-image {
+      width: 100%;
+      height: 500px;
+      object-fit: cover;
+      border-radius: 4px;
+    }
+
+    .detail-content h1 {
+      font-family: var(--font-serif);
+      font-size: clamp(2.5rem, 4vw, 4rem);
+      font-weight: 300;
+      line-height: 1.1;
+      margin-bottom: 20px;
+      color: var(--dark);
+    }
+
+    .detail-location {
+      font-size: 1rem;
+      color: var(--gold);
+      margin-bottom: 16px;
+      letter-spacing: 0.06em;
+    }
+
+    .detail-price {
+      font-family: var(--font-serif);
+      font-size: 2.2rem;
+      font-weight: 300;
+      color: var(--dark);
+      margin-bottom: 32px;
+      border-bottom: 1px solid var(--gold);
+      padding-bottom: 16px;
+    }
+
+    .detail-features {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+      margin-bottom: 40px;
+    }
+
+    .feature {
+      text-align: center;
+    }
+
+    .feature-value {
+      font-family: var(--font-serif);
+      font-size: 2rem;
+      font-weight: 300;
+      color: var(--dark);
+      display: block;
+    }
+
+    .feature-label {
+      font-size: 0.65rem;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-top: 8px;
+    }
+
+    .description {
+      font-size: 0.95rem;
+      line-height: 1.8;
+      color: var(--mid);
+      margin-bottom: 40px;
+    }
+
+    .detail-buttons {
+      display: flex;
+      gap: 20px;
+    }
+
+    .btn-primary, .btn-secondary {
+      font-size: 0.67rem;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      font-weight: 500;
+      padding: 16px 38px;
+      text-decoration: none;
+      transition: all var(--fast);
+      cursor: pointer;
+      border: none;
+    }
+
+    .btn-primary {
+      background: var(--dark);
+      color: var(--white);
+    }
+
+    .btn-primary:hover {
+      background: var(--gold);
+      letter-spacing: 0.28em;
+    }
+
+    .btn-secondary {
+      background: transparent;
+      color: var(--dark);
+      border: 1px solid var(--mid);
+    }
+
+    .btn-secondary:hover {
+      border-color: var(--gold);
+      color: var(--gold);
+    }
+
+    /* Highlights Section */
+    .highlights {
+      padding: 80px 60px;
+      background: var(--white);
+    }
+
+    .highlights h2 {
+      font-family: var(--font-serif);
+      font-size: clamp(2rem, 3.5vw, 3.5rem);
+      font-weight: 300;
+      margin-bottom: 50px;
+      color: var(--dark);
+    }
+
+    .highlights-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 40px;
+    }
+
+    .highlight-item h3 {
+      font-size: 1.1rem;
+      font-weight: 500;
+      margin-bottom: 12px;
+      color: var(--dark);
+    }
+
+    .highlight-item p {
+      font-size: 0.95rem;
+      line-height: 1.7;
+      color: var(--muted);
+    }
+
+    /* Amenities */
+    .amenities {
+      padding: 80px 60px;
+    }
+
+    .amenities h2 {
+      font-family: var(--font-serif);
+      font-size: clamp(2rem, 3.5vw, 3.5rem);
+      font-weight: 300;
+      margin-bottom: 50px;
+      color: var(--dark);
+    }
+
+    .amenities-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 30px;
+    }
+
+    .amenity {
+      text-align: center;
+      padding: 24px;
+      background: var(--bone);
+      border-radius: 4px;
+    }
+
+    .amenity h3 {
+      font-size: 1rem;
+      font-weight: 500;
+      color: var(--dark);
+      margin-top: 12px;
+    }
+
+    /* Footer */
+    footer {
+      background: var(--dark);
+      color: var(--white);
+      padding: 60px;
+      text-align: center;
+      margin-top: 80px;
+    }
+
+    footer p {
+      font-size: 0.9rem;
+      letter-spacing: 0.06em;
+    }
+
+    footer a {
+      color: var(--gold);
+      text-decoration: none;
+      margin: 0 12px;
+    }
+
+    @media (max-width: 768px) {
+      .detail-hero {
+        grid-template-columns: 1fr;
+        padding: 40px 30px;
+        gap: 40px;
+      }
+
+      .highlights-grid, .amenities-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .detail-features {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      nav { padding: 20px 30px; }
+
+      .detail-image { height: 300px; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- Navigation -->
+<nav>
+  <a href="magic-homes.html" class="nav-logo">Magic<span>Homes</span></a>
+  <a href="magic-homes.html" class="back-link">← Back to listings</a>
+</nav>
+
+<!-- Property Detail Hero -->
+<section class="detail-hero" id="propertyDetail">
+  <div class="detail-gallery">
+    <img class="detail-image" id="propertyImage" src="" alt="Property" />
+  </div>
+  <div class="detail-content">
+    <div class="detail-location" id="propertyTag"></div>
+    <h1 id="propertyName"></h1>
+    <div class="detail-price" id="propertyPrice"></div>
+    <div class="description" id="propertyDescription"></div>
+    <div class="detail-features" id="propertyFeatures"></div>
+    <div class="detail-buttons">
+      <button class="btn-primary" onclick="sendWhatsAppEnquiry()">Request Tour via WhatsApp</button>
+      <button class="btn-secondary" onclick="sendEmailEnquiry()">Email Inquiry</button>
+    </div>
+  </div>
+</section>
+
+<!-- Highlights -->
+<section class="highlights">
+  <h2>Property Highlights</h2>
+  <div class="highlights-grid" id="highlightsGrid"></div>
+</section>
+
+<!-- Amenities -->
+<section class="amenities">
+  <h2>Premium Amenities</h2>
+  <div class="amenities-grid" id="amenitiesGrid"></div>
+</section>
+
+<!-- Footer -->
+<footer>
+  <p>&copy; 2026 Magic Homes. Luxury Real Estate</p>
+  <p style="margin-top: 20px;">
+    <a href="#">Contact Us</a> | <a href="#">Privacy Policy</a> | <a href="#">Terms</a>
+  </p>
+</footer>
+
+<script>
+  // Property data
+  const properties = {
+    1: {
+      name: "PALATIAL BY HERO HOMES",
+      image: "https://herohomes.org.in/media/images/gallery/exterior/thumb/gallery6-thumb.jpg",
+            highlights: [
+        
+      ],
+      amenities: [
+        { name: "Court" },
+        { name: "Gym " },
+        { name: "Mounds" },
+        { name: "Deck Area" },
+        { name: "Floating Lawn" },
+        { name: "Cricket Pitch" },
+        { name: "Kids Pool" },
+        { name: "Security System" }
+      ]
+    },
+    2: {
+      name: "ROF PRAWASA",
+      location: "SECTOR 88A, GURGAON",
+      
+         image: "https://www.aarbuildtech.com/wp-content/uploads/2025/04/floors-3.jpeg",
+      
+      
+     
+        
+      amenities: [
+        { name: "Luxury Gated township" },
+        { name: "Low density Project" },
+        { name: "First transfer free" },
+        { name: "Basement office space" },
+      ]
+    },
+    3: {
+      name: "Elie Saab",
+      
+      
+      tag: "By M3M ",
+      image: "https://m3mpropertyindia.com/wp-content/uploads/2025/11/M3M-Elie-Saab-Residences.webp",
+    
+            highlights: [
+       
+      
+
+      ]
+    },
+    4: {
+      name: "Sapphire Estate",
+      location: "Miami Beach, Florida",
+      price: "$7,400,000",
+      tag: "Waterfront",
+      image: "https://images.unsplash.com/photo-1605146769289-440113cc3d00?w=1200&q=80&auto=format",
+      beds: "5 Bed",
+      baths: "6 Bath",
+      sqft: "7,100 ft²",
+      description: "A stunning waterfront property with direct ocean views and private beach access. This contemporary luxury home features modern architecture, resort-style amenities, and exceptional entertainment spaces.",
+      highlights: [
+        { title: "Ocean Views", desc: "Direct Atlantic Ocean views from all major rooms" },
+        { title: "Marina Access", desc: "Private marina with yacht docking" },
+        { title: "Resort Pool", desc: "Lagoon-style pool with waterslide" }
+      ],
+      amenities: [
+        { name: "Marina" },
+        { name: "Beach Access" },
+        { name: "Pool & Spa" },
+        { name: "Boat Dock" },
+        { name: "outdoor Kitchen" },
+        { name: "Home Theater" },
+        { name: "Fitness" },
+        { name: "Security" }
+      ]
+    },
+    5: {
+      name: "Aerie Residence",
+      location: "Aspen, Colorado",
+      price: "$6,950,000",
+      tag: "New Listing",
+      image: "https://images.unsplash.com/photo-1571055107559-3e67626fa8be?w=1200&q=80&auto=format",
+      beds: "5 Bed",
+      baths: "5 Bath",
+      sqft: "6,800 ft²",
+      description: "Perched in the pristine Rocky Mountains, this architectural gem offers luxury mountain living with world-class skiing access. Floor-to-ceiling windows frame panoramic alpine views.",
+      highlights: [
+        { title: "Mountain Views", desc: "Panoramic views of the Rocky Mountains and Aspen Valley" },
+        { title: "Ski Access", desc: "Direct access to world-class ski slopes" },
+        { title: "Heated Outdoor Space", desc: "Year-round outdoor entertaining areas" }
+      ],
+      amenities: [
+        { name: "Ski Access" },
+        { name: "Hot Tub" },
+        { name: "Sauna" },
+        { name: "Wine Cellar" },
+        { name: "Media Room" },
+        { name: "Fireplace" },
+        { name: "Deck" },
+        { name: "Garage" }
+      ]
+    }
+  };
+
+  // Load property details
+  function loadPropertyDetails() {
+    const urlParams = new URLSearchParams(window.location.search);
+    const propertyId = urlParams.get('id');
+    
+    if (!propertyId || !properties[propertyId]) {
+      document.getElementById('propertyDetail').innerHTML = '<h1>Property not found</h1>';
+      return;
+    }
+
+    const prop = properties[propertyId];
+    window.currentProperty = prop;
+
+    // Populate main content
+    document.getElementById('propertyImage').src = prop.image;
+    document.getElementById('propertyTag').textContent = prop.tag;
+    document.getElementById('propertyName').textContent = prop.name;
+    document.getElementById('propertyPrice').textContent = prop.price;
+    document.getElementById('propertyDescription').textContent = prop.description;
+    document.title = prop.name + ' — Magic Homes';
+
+    // Features
+    const featuresHTML = `
+      <div class="feature"><span class="feature-value">${prop.beds}</span><span class="feature-label">Bedrooms</span></div>
+      <div class="feature"><span class="feature-value">${prop.baths}</span><span class="feature-label">Bathrooms</span></div>
+      <div class="feature"><span class="feature-value">${prop.sqft}</span><span class="feature-label">Square Feet</span></div>
+    `;
+    document.getElementById('propertyFeatures').innerHTML = featuresHTML;
+
+    // Highlights
+    const highlightsHTML = prop.highlights.map(h => `
+      <div class="highlight-item">
+        <h3>${h.title}</h3>
+        <p>${h.desc}</p>
+      </div>
+    `).join('');
+    document.getElementById('highlightsGrid').innerHTML = highlightsHTML;
+
+    // Amenities
+    const amenitiesHTML = prop.amenities.map(a => `
+      <div class="amenity">
+        <div style="font-size: 2rem;">✓</div>
+        <h3>${a.name}</h3>
+      </div>
+    `).join('');
+    document.getElementById('amenitiesGrid').innerHTML = amenitiesHTML;
+  }
+
+  // WhatsApp inquiry
+  function sendWhatsAppEnquiry() {
+    const prop = window.currentProperty;
+    if (!prop) return;
+
+    const message = `Hi Magic Homes! I'm interested in scheduling a tour of ${prop.name} in ${prop.location}. It's listed at ${prop.price}. Please let me know available times.`;
+    const encodedMessage = encodeURIComponent(message);
+    const whatsappURL = `https://wa.me/8368589909?text=${encodedMessage}`;
+    window.open(whatsappURL, '_blank');
+  }
+
+  // Email inquiry
+  function sendEmailEnquiry() {
+    const prop = window.currentProperty;
+    if (!prop) return;
+
+    const subject = `Inquiry for ${prop.name}`;
+    const body = `Hi Magic Homes,\n\nI am interested in learning more about ${prop.name}.\n\nPlease contact me with more information and available tour times.\n\nThank you.`;
+    const mailtoURL = `mailto:sandeep.propsixty@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+    window.open(mailtoURL);
+  }
+
+  // Load on page ready
+  document.addEventListener('DOMContentLoaded', loadPropertyDetails);
+</script>
+
+</body>
+</html>
